@@ -1,13 +1,14 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native';
+import {View} from 'react-native';
+// import {SafeAreaView} from 'react-native-safe-area-context';
 import CameraScreen from './src/components/screens/camera/CameraScreen';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <CameraScreen />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -16,6 +17,5 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
   },
 });
