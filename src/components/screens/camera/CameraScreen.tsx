@@ -1,4 +1,3 @@
-import CameraRoll from '@react-native-community/cameraroll';
 import React from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
