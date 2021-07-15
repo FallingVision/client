@@ -1,5 +1,7 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
+// import {SafeAreaView} from 'react-native-safe-area-context';
 import CameraScreen from './src/components/screens/camera/CameraScreen';
 
 /* axios base */
@@ -13,13 +15,16 @@ configure({ axios: axios.axiosInstance });
 
 const App = () => {
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			{/* <Text>Falling Vision</Text> */}
-			{/* <CameraScreen /> */}
-			<TestScreen />
-			{/* <TestScreen2 /> */}
-		</SafeAreaView>
+		<View style={styles.container}>
+			<CameraScreen />
+		</View>
 	);
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+});
