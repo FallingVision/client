@@ -16,7 +16,7 @@ configure({ axios: axios.axiosInstance });
 const App = () => {
 	return (
 		<View style={styles.container}>
-			<CameraScreen />
+			<TestScreen />
 		</View>
 	);
 };
