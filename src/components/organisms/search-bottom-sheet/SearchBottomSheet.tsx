@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useMemo } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet';
+import WebView from 'react-native-webview';
 
 const styles = StyleSheet.create({
 	container: {
@@ -8,7 +9,8 @@ const styles = StyleSheet.create({
 		paddingTop: 200,
 	},
 	contentContainer: {
-		backgroundColor: 'white',
+		backgroundColor: 'red',
+		flex: 1,
 	},
 	itemContainer: {
 		padding: 6,
@@ -53,10 +55,26 @@ const SearchBottomSheet = () => {
 	);
 
 	return (
-		<BottomSheet ref={sheetRef} index={0} snapPoints={snapPoints} onChange={handleSheetChange}>
-			<BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
-				{data.map(renderItem)}
-			</BottomSheetScrollView>
+		<BottomSheet
+			ref={sheetRef}
+			index={0}
+			snapPoints={snapPoints}
+			onChange={handleSheetChange}
+			// enableHandlePanningGesture={false}
+		>
+			<BottomSheetView style={styles.contentContainer}>
+				<View
+					style={{
+						flex: 1,
+					}}
+				>
+					<WebView
+						source={{
+							uri: 'https://velog.io/@qjqdn1568/NestJS-%EA%B8%B0%EC%B4%88%EC%A4%91%EC%97%90-%EA%B8%B0%EC%B4%88-Controller-%EB%9E%80#routing-%EC%9D%98-%EC%9D%B4%ED%95%B4',
+						}}
+					/>
+				</View>
+			</BottomSheetView>
 		</BottomSheet>
 	);
 };
