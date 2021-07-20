@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useMemo } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import BottomSheet, { BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet';
 import WebView from 'react-native-webview';
+import { CategoryText } from '../../screens/camera/CameraScreen';
 
 const styles = StyleSheet.create({
 	container: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const SearchBottomSheet = () => {
+const SearchBottomSheet = (props: CategoryText) => {
 	// hooks
 	const sheetRef = useRef<BottomSheet>(null);
 
@@ -31,7 +32,7 @@ const SearchBottomSheet = () => {
 				.map((_, index) => `index-${index}`),
 		[],
 	);
-	const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
+	const snapPoints = useMemo(() => ['1%', '25%', '50%', '90%'], []);
 
 	// callbacks
 	const handleSheetChange = useCallback(index => {
@@ -70,7 +71,7 @@ const SearchBottomSheet = () => {
 				>
 					<WebView
 						source={{
-							uri: 'https://velog.io/@qjqdn1568/NestJS-%EA%B8%B0%EC%B4%88%EC%A4%91%EC%97%90-%EA%B8%B0%EC%B4%88-Controller-%EB%9E%80#routing-%EC%9D%98-%EC%9D%B4%ED%95%B4',
+							uri: `https://www.google.com/search?q=${props.category}+${props.text}&biw=1200&bih=668&tbm=shop&ei=mUf2YPr1DMeGoAS_56-4AQ&oq=starbucks+mug&gs_lcp=Cgtwcm9kdWN0cy1jYxADMgIIADICCAAyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBg6CAgAELADEM0CSgQIQRgBUPQdWPQ_YLpDaAVwAHgAgAGPA4gB3AuSAQcwLjkuMC4xmAEAoAEByAEBwAEB&sclient=products-cc&ved=0ahUKEwi6pobw3vDxAhVHA4gKHb_zCxcQ4dUDCAs&uact=5`,
 						}}
 					/>
 				</View>

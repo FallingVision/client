@@ -1,9 +1,31 @@
+import useAxios from 'axios-hooks';
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Image } from 'react-native-elements/dist/image/Image';
+import SearchBottomSheet from '../../organisms/search-bottom-sheet/SearchBottomSheet';
+
+export interface CategoryText {
+	category: string;
+	text: string;
+}
 
 const CameraScreen = (): JSX.Element => {
+	const [{ data: getData, loading: getLoading, error: getError }, executeGet] =
+		useAxios<CategoryText>(
+			{
+				method: 'GET',
+				url: 'http://localhost:4000/test',
+			},
+			{
+				manual: true,
+			},
+		);
+
+	const { category, text } = getData
+		? { category: getData.category, text: getData.text }
+		: { category: '', text: '' };
+
 	const cameraRef = React.useRef<RNCamera>(null);
 
 	const takePhoto = async () => {
@@ -16,6 +38,7 @@ const CameraScreen = (): JSX.Element => {
 
 			if (data) {
 				// data.base64 보내기
+				executeGet();
 			}
 		}
 	};
@@ -40,6 +63,8 @@ const CameraScreen = (): JSX.Element => {
 					style={styles.takePhotoButtonImage}
 				/>
 			</TouchableOpacity>
+
+			<SearchBottomSheet category={category} text={text} />
 		</View>
 	);
 };
