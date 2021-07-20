@@ -1,5 +1,8 @@
 apply plugin: "com.android.application"
 
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
 import com.android.build.OutputFile
 
 /**
@@ -136,6 +139,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {
