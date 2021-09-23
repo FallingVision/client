@@ -24,7 +24,9 @@ const axiosInstance = axios.create({
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://localhost:3000',
 
 	// Flask Server
-	baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
+	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
+	baseURL:
+		Platform.OS === 'android' ? 'http://192.168.101.47:5000' : 'http://192.168.101.47:5000',
 	timeout: 3600,
 });
 

@@ -1,5 +1,6 @@
+import axios from 'axios';
 import useAxios from 'axios-hooks';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Image } from 'react-native-elements/dist/image/Image';
@@ -11,16 +12,47 @@ export interface CategoryText {
 }
 
 const CameraScreen = (): JSX.Element => {
-	const [{ data: getData, loading: getLoading, error: getError }, executeGet] =
-		// useAxios<CategoryText>(
-		useAxios<any>({
-			method: 'GET',
-			url: '/test',
-		});
+	const [url, setUrl] = useState<string>('');
 
-	const { category, text } = getData
-		? { category: getData.category, text: getData.text }
-		: { category: '', text: '' };
+	// const [{ data: getData, loading: getLoading, error: getError }, executeGet] =
+	// 	// useAxios<CategoryText>(
+	// 	useAxios<any>(
+	// 		{
+	// 			method: 'GET',
+	// 			url: '/test',
+	// 		},
+	// 		{
+	// 			manual: true,
+	// 		},
+	// 	);
+
+	const [{ data: uploadData, loading: uploadLoading, error: uploadError }, executeUpload] =
+		// useAxios<CategoryText>(
+		useAxios<any>(
+			{
+				method: 'POST',
+				url: '/upload-image',
+				// data: {
+				// 	image: url,
+				// },
+			},
+			{
+				manual: true,
+			},
+		);
+
+	// fetch('http://localhost:8000/upload', {
+	//   method: 'POST',
+	//   body: data,
+	// }).then((response) => {
+	//   response.json().then((body) => {
+	//     this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+	//   });
+	// });
+
+	// const { category, text } = getData
+	// 	? { category: getData.category, text: getData.text }
+	// 	: { category: '', text: '' };
 
 	const cameraRef = React.useRef<RNCamera>(null);
 
@@ -31,34 +63,24 @@ const CameraScreen = (): JSX.Element => {
 			const data = await cameraRef.current?.takePictureAsync({
 				quality: 1,
 				exif: true,
+				// base64: false,
 				base64: true,
 			});
 
 			if (data) {
-				// data.base64 보내기
-				executeGet()
-					.then((res: any) => {
+				executeUpload({
+					data: data.base64,
+				})
+					.then(res => {
+						// console.log('res:', res.data);
 						console.log('res:', res);
 					})
-					.catch((err: any) => {
+					.catch(err => {
 						console.log('err:', err);
 					});
 			}
 		}
 	};
-
-	useEffect(() => {
-		if (getData) {
-			console.log('data');
-			console.log(getData);
-		}
-		if (getLoading) {
-			console.log('loading');
-		}
-		if (getError) {
-			console.log('error');
-		}
-	}, [getData, getLoading, getError]);
 
 	return (
 		<View style={styles.container}>
@@ -81,7 +103,7 @@ const CameraScreen = (): JSX.Element => {
 				/>
 			</TouchableOpacity>
 
-			<SearchBottomSheet category={category} text={text} />
+			{/* <SearchBottomSheet category={category} text={text} /> */}
 		</View>
 	);
 };
