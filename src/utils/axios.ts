@@ -18,13 +18,13 @@ const postData: PostRequestData = {
 
 const axiosInstance = axios.create({
 	/* product mode (ec2 api server endpoint) */
-	baseURL: 'http://18.118.222.24:5000',
-	// baseURL: 'http://0.0.0.0:2431',
-	// baseURL: 'http://localhost:5000',
-	// baseURL: 'http://127.0.0.1:2431/',
+	// baseURL: 'http://18.118.222.24:5000',
 
-	/* develope mode (local api server endpoint) */
-	// baseURL: Platform.OS === 'android'? 'http://10.0.2.2:5000' : 'http://localhost:5000'
+	// Nest Server
+	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://localhost:3000',
+
+	// Flask Server
+	baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
 	timeout: 3600,
 });
 

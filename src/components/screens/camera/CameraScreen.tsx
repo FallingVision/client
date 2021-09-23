@@ -1,5 +1,5 @@
 import useAxios from 'axios-hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Image } from 'react-native-elements/dist/image/Image';
@@ -12,16 +12,11 @@ export interface CategoryText {
 
 const CameraScreen = (): JSX.Element => {
 	const [{ data: getData, loading: getLoading, error: getError }, executeGet] =
-		useAxios<CategoryText>(
-			{
-				method: 'GET',
-				// url: 'http://127.0.0.1:2431/test',
-				url: 'http://127.0.0.1:2431/inference',
-			},
-			{
-				manual: true,
-			},
-		);
+		// useAxios<CategoryText>(
+		useAxios<any>({
+			method: 'GET',
+			url: '/test',
+		});
 
 	const { category, text } = getData
 		? { category: getData.category, text: getData.text }
@@ -31,38 +26,39 @@ const CameraScreen = (): JSX.Element => {
 
 	const takePhoto = async () => {
 		if (cameraRef) {
+			console.log('take photo');
+
 			const data = await cameraRef.current?.takePictureAsync({
 				quality: 1,
 				exif: true,
 				base64: true,
 			});
 
-			executeGet()
-				.then((res: any) => {
-					console.log('res:', res);
-					console.log('getData:', getData);
-				})
-				.catch((err: any) => {
-					console.log('err:', err);
-				});
-
-			// if (data) {
-			// 	// data.base64 보내기
-			// 	console.log('take photo');
-			// 	// executeGet()
-			// 	// 	.then(res => console.log('res:', res))
-			// 	// 	.catch(err => console.log('err:', err));
-			// 	executeGet()
-			// 		.then((res: any) => {
-			// 			console.log('res:', res);
-			// 			console.log('getData:', getData);
-			// 		})
-			// 		.catch((err: any) => {
-			// 			console.log('err:', err);
-			// 		});
-			// }
+			if (data) {
+				// data.base64 보내기
+				executeGet()
+					.then((res: any) => {
+						console.log('res:', res);
+					})
+					.catch((err: any) => {
+						console.log('err:', err);
+					});
+			}
 		}
 	};
+
+	useEffect(() => {
+		if (getData) {
+			console.log('data');
+			console.log(getData);
+		}
+		if (getLoading) {
+			console.log('loading');
+		}
+		if (getError) {
+			console.log('error');
+		}
+	}, [getData, getLoading, getError]);
 
 	return (
 		<View style={styles.container}>
