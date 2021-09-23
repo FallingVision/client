@@ -15,7 +15,8 @@ const CameraScreen = (): JSX.Element => {
 		useAxios<CategoryText>(
 			{
 				method: 'GET',
-				url: 'http://localhost:4000/test',
+				// url: 'http://127.0.0.1:2431/test',
+				url: 'http://127.0.0.1:2431/inference',
 			},
 			{
 				manual: true,
@@ -36,10 +37,30 @@ const CameraScreen = (): JSX.Element => {
 				base64: true,
 			});
 
-			if (data) {
-				// data.base64 보내기
-				executeGet();
-			}
+			executeGet()
+				.then((res: any) => {
+					console.log('res:', res);
+					console.log('getData:', getData);
+				})
+				.catch((err: any) => {
+					console.log('err:', err);
+				});
+
+			// if (data) {
+			// 	// data.base64 보내기
+			// 	console.log('take photo');
+			// 	// executeGet()
+			// 	// 	.then(res => console.log('res:', res))
+			// 	// 	.catch(err => console.log('err:', err));
+			// 	executeGet()
+			// 		.then((res: any) => {
+			// 			console.log('res:', res);
+			// 			console.log('getData:', getData);
+			// 		})
+			// 		.catch((err: any) => {
+			// 			console.log('err:', err);
+			// 		});
+			// }
 		}
 	};
 
