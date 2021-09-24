@@ -23,18 +23,6 @@ const CameraScreen = (): JSX.Element => {
 			},
 		);
 
-	const [{ data: testData, loading: testLoading, error: testError }, executeTest] =
-		// useAxios<CategoryText>(
-		useAxios<any>(
-			{
-				method: 'GET',
-				url: '/test',
-			},
-			{
-				manual: true,
-			},
-		);
-
 	// const { category, text } = getData
 	// 	? { category: getData.category, text: getData.text }
 	// 	: { category: '', text: '' };
@@ -51,21 +39,13 @@ const CameraScreen = (): JSX.Element => {
 				base64: true,
 			});
 
-			executeTest()
-				.then(res => {
-					console.log('test res:', res);
-				})
-				.catch(err => {
-					console.log('test err:', err);
-				});
-
 			if (data) {
 				executeUpload({
 					data: data.base64,
 				})
 					.then(res => {
 						// console.log('res:', res.data);
-						console.log('res:', res);
+						console.log('res:', res.data);
 					})
 					.catch(err => {
 						console.log('err:', err);
