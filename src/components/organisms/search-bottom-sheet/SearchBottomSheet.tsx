@@ -71,7 +71,7 @@ const SearchBottomSheet = (props: CategoryText) => {
 				>
 					<WebView
 						source={{
-							uri: `https://www.google.com/search?q=${props.category}+${props.text}&biw=1200&bih=668&tbm=shop&ei=mUf2YPr1DMeGoAS_56-4AQ&oq=starbucks+mug&gs_lcp=Cgtwcm9kdWN0cy1jYxADMgIIADICCAAyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBg6CAgAELADEM0CSgQIQRgBUPQdWPQ_YLpDaAVwAHgAgAGPA4gB3AuSAQcwLjkuMC4xmAEAoAEByAEBwAEB&sclient=products-cc&ved=0ahUKEwi6pobw3vDxAhVHA4gKHb_zCxcQ4dUDCAs&uact=5`,
+							uri: `https://www.google.com/search?q=${props.text}+${props.category}&biw=1200&bih=668&tbm=shop&ei=mUf2YPr1DMeGoAS_56-4AQ&oq=starbucks+mug&gs_lcp=Cgtwcm9kdWN0cy1jYxADMgIIADICCAAyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBgyBAgAEBg6CAgAELADEM0CSgQIQRgBUPQdWPQ_YLpDaAVwAHgAgAGPA4gB3AuSAQcwLjkuMC4xmAEAoAEByAEBwAEB&sclient=products-cc&ved=0ahUKEwi6pobw3vDxAhVHA4gKHb_zCxcQ4dUDCAs&uact=5`,
 						}}
 					/>
 				</View>
