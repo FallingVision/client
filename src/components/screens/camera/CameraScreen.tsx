@@ -5,15 +5,10 @@ import { RNCamera } from 'react-native-camera';
 import { Image } from 'react-native-elements/dist/image/Image';
 import SearchBottomSheet from '../../organisms/search-bottom-sheet/SearchBottomSheet';
 
-export interface CategoryText {
-	category: string;
-	text: string;
-}
-
 const CameraScreen = (): JSX.Element => {
 	const [{ data: uploadData, loading: uploadLoading, error: uploadError }, executeUpload] =
 		// useAxios<CategoryText>(
-		useAxios<any>(
+		useAxios<{ category: string; main_text_idx: number; text_list: string[]; error: boolean }>(
 			{
 				method: 'POST',
 				url: '/upload-image',
@@ -23,16 +18,10 @@ const CameraScreen = (): JSX.Element => {
 			},
 		);
 
-	// const { category, text } = getData
-	// 	? { category: getData.category, text: getData.text }
-	// 	: { category: '', text: '' };
-
 	const cameraRef = React.useRef<RNCamera>(null);
 
 	const takePhoto = async () => {
 		if (cameraRef) {
-			console.log('take photo');
-
 			const data = await cameraRef.current?.takePictureAsync({
 				quality: 1,
 				exif: true,
@@ -68,15 +57,22 @@ const CameraScreen = (): JSX.Element => {
 				}}
 				style={styles.cameraStyle}
 			/>
+
 			<TouchableOpacity style={styles.takePhotoButtonContainer} onPress={takePhoto}>
-				<Image
-					source={require('../../../assets/images/searchCircularButton.png')}
-					style={styles.takePhotoButtonImage}
-				/>
+				{!uploadLoading ? (
+					<Image
+						source={require('../../../assets/images/searchCircularButton.png')}
+						style={styles.takePhotoButtonImage}
+					/>
+				) : (
+					<View>
+						<ActivityIndicator animating size="large" color="black" />
+					</View>
+				)}
 			</TouchableOpacity>
-			{uploadLoading && <ActivityIndicator size="large" />}
-			{uploadData && !uploadLoading && !uploadError && (
-				<SearchBottomSheet category={uploadData.category} text={uploadData.text} />
+
+			{uploadData && !uploadError && !uploadLoading && (
+				<SearchBottomSheet data={uploadData} loading={uploadLoading} />
 			)}
 		</View>
 	);
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		justifyContent: 'center',
 		position: 'absolute',
-		bottom: '5%',
+		bottom: '10%',
 		zIndex: 1,
 	},
 	takePhotoButtonImage: {
