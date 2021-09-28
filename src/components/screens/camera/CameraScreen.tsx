@@ -74,8 +74,10 @@ const CameraScreen = (): JSX.Element => {
 					style={styles.takePhotoButtonImage}
 				/>
 			</TouchableOpacity>
-			{uploadLoading&&(<ActivityIndicator size="large"/>)}
-			{uploadData && !uploadLoading && !uploadError &&(<SearchBottomSheet category={uploadData.category} text={uploadData.text} />) }
+			{uploadLoading && <ActivityIndicator size="large" />}
+			{uploadData && !uploadLoading && !uploadError && (
+				<SearchBottomSheet category={uploadData.category} text={uploadData.text} />
+			)}
 		</View>
 	);
 };
