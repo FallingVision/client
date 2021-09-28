@@ -13,4 +13,12 @@ module.exports = {
     jsdom: true,
     JSX: true,
   },
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+  },
 };
