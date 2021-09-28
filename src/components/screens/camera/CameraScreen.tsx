@@ -1,6 +1,5 @@
-import axios from 'axios';
 import useAxios from 'axios-hooks';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Image } from 'react-native-elements/dist/image/Image';
@@ -12,43 +11,17 @@ export interface CategoryText {
 }
 
 const CameraScreen = (): JSX.Element => {
-	const [url, setUrl] = useState<string>('');
-
-	// const [{ data: getData, loading: getLoading, error: getError }, executeGet] =
-	// 	// useAxios<CategoryText>(
-	// 	useAxios<any>(
-	// 		{
-	// 			method: 'GET',
-	// 			url: '/test',
-	// 		},
-	// 		{
-	// 			manual: true,
-	// 		},
-	// 	);
-
 	const [{ data: uploadData, loading: uploadLoading, error: uploadError }, executeUpload] =
 		// useAxios<CategoryText>(
 		useAxios<any>(
 			{
 				method: 'POST',
 				url: '/upload-image',
-				// data: {
-				// 	image: url,
-				// },
 			},
 			{
 				manual: true,
 			},
 		);
-
-	// fetch('http://localhost:8000/upload', {
-	//   method: 'POST',
-	//   body: data,
-	// }).then((response) => {
-	//   response.json().then((body) => {
-	//     this.setState({ imageURL: `http://localhost:8000/${body.file}` });
-	//   });
-	// });
 
 	// const { category, text } = getData
 	// 	? { category: getData.category, text: getData.text }
@@ -63,7 +36,6 @@ const CameraScreen = (): JSX.Element => {
 			const data = await cameraRef.current?.takePictureAsync({
 				quality: 1,
 				exif: true,
-				// base64: false,
 				base64: true,
 			});
 
@@ -73,7 +45,7 @@ const CameraScreen = (): JSX.Element => {
 				})
 					.then(res => {
 						// console.log('res:', res.data);
-						console.log('res:', res);
+						console.log('res:', res.data);
 					})
 					.catch(err => {
 						console.log('err:', err);

@@ -20,13 +20,16 @@ const axiosInstance = axios.create({
 	/* product mode (ec2 api server endpoint) */
 	// baseURL: 'http://18.118.222.24:5000',
 
-	// Nest Server
+	// [Nest Server]
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://localhost:3000',
 
-	// Flask Server
+	// [Flask Server] Emulator
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
-	baseURL:
-		Platform.OS === 'android' ? 'http://192.168.101.47:5000' : 'http://192.168.101.47:5000',
+	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
+
+	// [Flask Server] Physical Device
+	baseURL: 'http://192.168.100.198:2431',
+	// baseURL: 'http://localhost:5000',
 	timeout: 3600,
 });
 
