@@ -1,6 +1,6 @@
 import useAxios from 'axios-hooks';
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Image } from 'react-native-elements/dist/image/Image';
 import SearchBottomSheet from '../../organisms/search-bottom-sheet/SearchBottomSheet';
@@ -74,8 +74,10 @@ const CameraScreen = (): JSX.Element => {
 					style={styles.takePhotoButtonImage}
 				/>
 			</TouchableOpacity>
-
-			{/* <SearchBottomSheet category={category} text={text} /> */}
+			{uploadLoading && <ActivityIndicator size="large" />}
+			{uploadData && !uploadLoading && !uploadError && (
+				<SearchBottomSheet category={uploadData.category} text={uploadData.text} />
+			)}
 		</View>
 	);
 };

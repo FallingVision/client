@@ -28,7 +28,7 @@ const axiosInstance = axios.create({
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
 
 	// [Flask Server] Physical Device
-	baseURL: 'http://192.168.100.198:2431',
+	baseURL: 'http://192.168.101.58:2431',
 	// baseURL: 'http://localhost:5000',
 	timeout: 3600,
 });
