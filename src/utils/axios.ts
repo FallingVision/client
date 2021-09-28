@@ -22,13 +22,16 @@ const axiosInstance = axios.create({
 
 	// [Nest Server]
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://localhost:3000',
+	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:5000' : 'http://localhost:5000',
+	// baseURL: 'http://10.0.2.2:5000',
+	// baseURL: '10.0.2.2:8081',
+	baseURL: 'http://192.168.101.35:5000',
 
 	// [Flask Server] Emulator
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
 
 	// [Flask Server] Physical Device
-	baseURL: 'http://192.168.101.58:2431',
 	// baseURL: 'http://localhost:5000',
 	timeout: 3600,
 });

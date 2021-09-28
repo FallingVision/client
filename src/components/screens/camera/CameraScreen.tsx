@@ -12,7 +12,6 @@ export interface CategoryText {
 
 const CameraScreen = (): JSX.Element => {
 	const [{ data: uploadData, loading: uploadLoading, error: uploadError }, executeUpload] =
-		// useAxios<CategoryText>(
 		useAxios<any>(
 			{
 				method: 'POST',
@@ -22,10 +21,6 @@ const CameraScreen = (): JSX.Element => {
 				manual: true,
 			},
 		);
-
-	// const { category, text } = getData
-	// 	? { category: getData.category, text: getData.text }
-	// 	: { category: '', text: '' };
 
 	const cameraRef = React.useRef<RNCamera>(null);
 
@@ -44,7 +39,6 @@ const CameraScreen = (): JSX.Element => {
 					data: data.base64,
 				})
 					.then(res => {
-						// console.log('res:', res.data);
 						console.log('res:', res.data);
 					})
 					.catch(err => {
