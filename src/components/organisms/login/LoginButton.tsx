@@ -10,13 +10,14 @@ export interface LoginButtonProps {
 		config?: AxiosRequestConfig | undefined,
 		options?: RefetchOptions | undefined,
 	) => AxiosPromise<any>;
+	alertHandler: () => void;
 	email: string;
 	password: string;
 	disabled: boolean;
 }
 
 const LoginButton = (props: LoginButtonProps): JSX.Element => {
-	const { executeLogin, email, password, disabled } = props;
+	const { executeLogin, alertHandler, email, password, disabled } = props;
 
 	return (
 		<TouchableOpacity
@@ -30,7 +31,9 @@ const LoginButton = (props: LoginButtonProps): JSX.Element => {
 					},
 				})
 					.then(res => {
-						// console.log('res.data:', res.data);
+						if (res.data === undefined) {
+							alertHandler();
+						}
 					})
 					.catch(err => {
 						console.log('err:', err);

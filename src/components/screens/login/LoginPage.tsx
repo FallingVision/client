@@ -11,10 +11,12 @@ export interface LoginPageProps {
 		config?: AxiosRequestConfig | undefined,
 		options?: RefetchOptions | undefined,
 	) => AxiosPromise<any>;
+
+	alertHandler: () => void;
 }
 
 const LoginPage = (props: LoginPageProps): JSX.Element => {
-	const { executeLogin } = props;
+	const { executeLogin, alertHandler } = props;
 
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
@@ -55,6 +57,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
 			<View style={styles.bottomContainer}>
 				<LoginButton
 					executeLogin={executeLogin}
+					alertHandler={alertHandler}
 					email={email}
 					password={password}
 					disabled={disabled}

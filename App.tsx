@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { View } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import CameraScreen from './src/components/screens/camera/CameraScreen';
 
 /* axios base */
@@ -28,6 +27,20 @@ const App = () => {
 		},
 	);
 
+	const alertHandler = () =>
+		Alert.alert(
+			'로그인 실패',
+			'잘못된 이메일 또는 비밀번호를 입력하셨습니다.\n다시 시도하세요.',
+			[
+				{
+					text: '확인',
+					onPress: () => {
+						// do nothing
+					},
+				},
+			],
+		);
+
 	if (!loginLoading && !loginError && loginData) {
 		return (
 			<SafeAreaView style={styles.rootCameraScreen}>
@@ -37,7 +50,7 @@ const App = () => {
 	} else {
 		return (
 			<SafeAreaView style={styles.rootLoginPage}>
-				<LoginPage executeLogin={executeLogin} />
+				<LoginPage executeLogin={executeLogin} alertHandler={alertHandler} />
 			</SafeAreaView>
 		);
 	}

@@ -24,6 +24,7 @@ const InputComponent = (props: InputComponentProps): JSX.Element => {
 				value={email}
 				keyboardType="email-address"
 				returnKeyType="done"
+				autoCapitalize="none"
 				maxLength={30}
 				containerStyle={styles.inputContainerStyle}
 			/>
