@@ -10,7 +10,7 @@ const CameraScreen = (): JSX.Element => {
 		useAxios<{ category: string; main_text_idx: number; text_list: string[]; error: boolean }>(
 			{
 				method: 'POST',
-				url: '/upload-image',
+				url: 'http://192.168.100.123:2431/upload-image',
 			},
 			{
 				manual: true,

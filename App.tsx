@@ -16,7 +16,7 @@ const App = () => {
 		access_token: string;
 	}>(
 		{
-			url: '/auth/login',
+			url: 'http://192.168.100.123:5000/auth/login',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

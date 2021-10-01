@@ -25,7 +25,7 @@ const axiosInstance = axios.create({
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:5000' : 'http://localhost:5000',
 	// baseURL: 'http://10.0.2.2:5000',
 	// baseURL: '10.0.2.2:8081',
-	baseURL: 'http://192.168.101.35:5000',
+	//baseURL: 'http://192.168.101.174:5000',
 
 	// [Flask Server] Emulator
 	// baseURL: Platform.OS === 'android' ? 'http://10.0.2.2:2431' : 'http://localhost:2431',
@@ -33,7 +33,7 @@ const axiosInstance = axios.create({
 
 	// [Flask Server] Physical Device
 	// baseURL: 'http://localhost:5000',
-	timeout: 3600,
+	timeout: 20000,
 });
 
 const setAxiosHeaders = (key: string, accessToken: string | null): void => {
